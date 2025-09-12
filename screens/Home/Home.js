@@ -6,7 +6,7 @@ import {
   ScrollView,
   Image,
   Pressable,
-  FlatList
+  FlatList,
 } from 'react-native';
 import Search from '../../components/Search/Search';
 import Header from '../../components/Header/Header';
@@ -16,14 +16,16 @@ import {useDispatch, useSelector} from 'react-redux';
 import Tab from '../../components/Tab/Tab';
 import {updateSelectedCategoryId} from '../../redux/reducers/Categories';
 import SingleDonationItem from '../../components/SingleDonationItem/SingleDonationItem';
+import {Routes} from '../../navigation/Routes';
+import {updateSelectedDonationId} from '../../redux/reducers/Donations';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [categoryPage, setCategoryPage] = useState(1);
   const [categoryList, setCategoryList] = useState([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState(false);
   const categoryPageSize = 4;
   const [donationItems, setDonationItems] = useState([]);
-    const user = useSelector(state => state.user);
+  const user = useSelector(state => state.user);
   const categories = useSelector(state => state.categories);
   const donations = useSelector(state => state.donations);
   const dispatch = useDispatch();
@@ -40,7 +42,7 @@ const Home = () => {
     setIsLoadingCategories(false);
   }, []);
 
-   useEffect(() => {
+  useEffect(() => {
     const items = donations.items.filter(value =>
       value.categoryIds.includes(categories.selectedCategoryId),
     );
@@ -129,11 +131,14 @@ const Home = () => {
             )}
           />
         </View>
-         {donationItems.length > 0 && (
+        {donationItems.length > 0 && (
           <View style={style.donationItemsContainer}>
             {donationItems.map(value => (
               <SingleDonationItem
-                onPress={selectedDonationId => {}}
+                onPress={selectedDonationId => {
+                  dispatch(updateSelectedDonationId(selectedDonationId));
+                  navigation.navigate(Routes.SingleDonationItem);
+                }}
                 donationItemId={value.donationItemId}
                 uri={value.image}
                 donationTitle={value.name}

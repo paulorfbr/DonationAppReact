@@ -30,12 +30,6 @@ const SingleDonationItem = ({navigation, route}) => {
         <Header type={1} title={donationItemInformation.name} />
         <Text style={style.description}>
           {donationItemInformation.description}
-          {donationItemInformation.description}
-          {donationItemInformation.description}
-          {donationItemInformation.description}
-          {donationItemInformation.description}
-          {donationItemInformation.description}
-          {donationItemInformation.description}
         </Text>
       </ScrollView>
       <View style={style.button}>

@@ -8,10 +8,12 @@ import {persistReducer, persistStore} from 'redux-persist';
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 // Importing the Categories reducer from the ./reducers/Categories file
 import Categories from './reducers/Categories';
+import Donations from './reducers/Donations';
 
 const rootReducer = combineReducers({
   user: User,
   categories: Categories,
+  donations: Donations,
 });
 
 // We're passing in the persisted reducer as the main reducer for the store

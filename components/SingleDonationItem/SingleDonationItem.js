@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, View, Pressable} from 'react-native';
+import {Text, Image, View, Pressable} from 'react-native';
 import PropTypes from 'prop-types';
 import Badge from '../Badge/Badge';
 import Header from '../Header/Header';
@@ -23,7 +23,6 @@ const SingleDonationItem = props => {
         />
       </View>
       <View style={style.donationInformation}>
-        <Header title={props.donationTitle} type={3} color={'#0A043C'} />
         <View style={style.price}>
           <Header
             title={props.donationTitle}
@@ -31,6 +30,7 @@ const SingleDonationItem = props => {
             color={'#0A043C'}
             numberOfLines={1}
           />
+          <Text>{props.price}</Text>
         </View>
       </View>
      </Pressable>
